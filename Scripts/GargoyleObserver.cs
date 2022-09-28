@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Observer : MonoBehaviour
+public class GargoyleObserver : MonoBehaviour
 {
     public Transform player;
     public GameEnding gameEnding;
@@ -44,7 +44,7 @@ public class Observer : MonoBehaviour
                 if (raycastHit.collider.transform == player)
                 {
                     Debug.Log(raycastHit.transform);
-                    gameEnding.CaughtPlayer();
+                   // gameEnding.CaughtPlayer ();
                 }
             }
         }
