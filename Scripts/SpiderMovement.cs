@@ -16,6 +16,7 @@ public class SpiderMovement : MonoBehaviour
     {
         if (other.gameObject.tag == "Player") gameEnding.CaughtPlayer();
 
+        //Revisar
         else if (other.gameObject.tag == "Wall") 
         {
             transform.Rotate(Vector3.up * 90 * Random.Range(0,3));
