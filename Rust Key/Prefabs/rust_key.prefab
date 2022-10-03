@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2093443782267337543}
   - component: {fileID: 3841222327650087072}
   - component: {fileID: 959025397}
+  - component: {fileID: 4784826735112008319}
   m_Layer: 0
   m_Name: rust_key
   m_TagString: Key
@@ -115,6 +116,26 @@ MonoBehaviour:
   gameEnding: {fileID: 0}
   key: {fileID: 374289202576707483}
   hasKey: 0
+--- !u!95 &4784826735112008319
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 374289202576707483}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2eef0a1d8ff81a44fbec9ab6985a0c6b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &2946347175081852247
 GameObject:
   m_ObjectHideFlags: 0
