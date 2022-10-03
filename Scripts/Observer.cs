@@ -11,8 +11,14 @@ public class Observer : MonoBehaviour
 
     void OnTriggerEnter (Collider other)
     {
+        //var gargoyle = GameObject.FindWithTag("Gargoyle");
+            
         if (other.transform == player)
         {
+            //if (other == gargoyle.GetComponent<Collider>())
+            //{
+            //    Debug.Log("Is gargoyle");
+            //}
             m_IsPlayerInRange = true;
         }
     }
@@ -37,7 +43,8 @@ public class Observer : MonoBehaviour
             {
                 if (raycastHit.collider.transform == player)
                 {
-                    gameEnding.CaughtPlayer ();
+                    Debug.Log(raycastHit.transform);
+                    gameEnding.CaughtPlayer();
                 }
             }
         }
