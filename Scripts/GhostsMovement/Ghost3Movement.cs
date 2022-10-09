@@ -5,36 +5,59 @@ using UnityEngine.AI;
 
 public class Ghost3Movement : MonoBehaviour
 {
-    public NavMeshAgent navMeshAgent;
-    public Transform[] waypoints;
+    //public NavMeshAgent navMeshAgent;
+
+    Rigidbody m_Rigidbody;
+    Quaternion m_Rotation = Quaternion.identity;
+    
+    float m_velocidad = 1.5f;
+    float turnSpeed = 20f;
+
+    public GameObject nextWaypoint;
+    GameObject lastWaypoint = null;
 
     public static bool called;
     public static Vector3 calledPosition;
 
-    int m_CurrentWaypointIndex;
-
     void Start()
     {
-        navMeshAgent.SetDestination(waypoints[0].position);
         called = false;
+        m_Rigidbody = GetComponent<Rigidbody>();
+
     }
 
-    void Update()
+    void FixedUpdate()
     {
+        if (transform.position == nextWaypoint.transform.position)
+        {
+            var listNeighbors = nextWaypoint.gameObject.GetComponent<Neighbors>().neighbors;
+            var newWaypoint = listNeighbors[Random.Range(0, listNeighbors.Length)];
+
+            while (newWaypoint == lastWaypoint)
+            {
+                newWaypoint = listNeighbors[Random.Range(0, listNeighbors.Length)];
+            }
+
+            lastWaypoint = nextWaypoint;
+            nextWaypoint = newWaypoint;
+        }
+
+
         if (called)
         {
-            navMeshAgent.SetDestination(calledPosition);
+            //Destination: calledPosition
             called = false;
         }
 
         else
         {
-            if (navMeshAgent.remainingDistance < navMeshAgent.stoppingDistance)
-            {
-                m_CurrentWaypointIndex = (m_CurrentWaypointIndex + 1) % waypoints.Length;
-                navMeshAgent.SetDestination(waypoints[m_CurrentWaypointIndex].position);
-            }
+            //Vector3 desiredForward = Vector3.RotateTowards(transform.forward, nextWaypoint.transform.position, turnSpeed * Time.deltaTime, 0f);
+            //m_Rotation = Quaternion.LookRotation(desiredForward);
+            //m_Rigidbody.MoveRotation(m_Rotation);
+            transform.position = Vector3.MoveTowards(transform.position, nextWaypoint.transform.position, m_velocidad * Time.deltaTime);
+            
         }
+
 
     }
 }
