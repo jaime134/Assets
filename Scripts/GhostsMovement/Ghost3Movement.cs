@@ -9,9 +9,11 @@ public class Ghost3Movement : MonoBehaviour
 
     Rigidbody m_Rigidbody;
     Quaternion m_Rotation = Quaternion.identity;
+    Quaternion _lookRotation;
+    Vector3 _direction;
     
     float m_velocidad = 1.5f;
-    float turnSpeed = 20f;
+    float turnSpeed = 50f;
 
     public GameObject nextWaypoint;
     GameObject lastWaypoint = null;
@@ -40,6 +42,10 @@ public class Ghost3Movement : MonoBehaviour
 
             lastWaypoint = nextWaypoint;
             nextWaypoint = newWaypoint;
+
+            _direction = (nextWaypoint.transform.position - transform.position).normalized;
+            _lookRotation = Quaternion.LookRotation(_direction);
+            transform.rotation = Quaternion.Slerp(transform.rotation, _lookRotation, Time.deltaTime * turnSpeed);
         }
 
 
@@ -55,7 +61,6 @@ public class Ghost3Movement : MonoBehaviour
             //m_Rotation = Quaternion.LookRotation(desiredForward);
             //m_Rigidbody.MoveRotation(m_Rotation);
             transform.position = Vector3.MoveTowards(transform.position, nextWaypoint.transform.position, m_velocidad * Time.deltaTime);
-            
         }
 
 
