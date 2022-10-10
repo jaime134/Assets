@@ -1539,7 +1539,7 @@ Camera:
   far clip plane: 5000
   field of view: 48
   orthographic: 0
-  orthographic size: 5
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -2369,7 +2369,10 @@ MonoBehaviour:
     NearClipPlane: 0.1
     FarClipPlane: 5000
     Dutch: 0
+    ModeOverride: 0
     LensShift: {x: 0, y: 0}
+    GateFit: 2
+    m_SensorSize: {x: 1.3333334, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -3216,7 +3219,7 @@ PrefabInstance:
     - target: {fileID: 6199127110365035078, guid: 39d0626ce76d1884da050e0e509a5540,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -15.2
+      value: -15.75
       objectReference: {fileID: 0}
     - target: {fileID: 6199127110365035078, guid: 39d0626ce76d1884da050e0e509a5540,
         type: 3}
