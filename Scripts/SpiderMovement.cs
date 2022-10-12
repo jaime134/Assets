@@ -6,7 +6,7 @@ public class SpiderMovement : MonoBehaviour
 {
     public GameEnding gameEnding;
     public GameObject nextWaypoint;
-    float speed = 3f;
+    public float speed = 3f;
     float turnSpeed = 100f;
     GameObject lastWaypoint = null;
     Quaternion _lookRotation;
