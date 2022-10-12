@@ -1768,7 +1768,7 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7787681258065136404}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.75
   m_Height: 2
@@ -1787,7 +1787,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameEnding: {fileID: 0}
-  speed: 1
+  nextWaypoint: {fileID: 0}
 --- !u!54 &413414773
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1802,8 +1802,8 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_Constraints: 84
+  m_CollisionDetection: 1
 --- !u!1 &7787681258065136408
 GameObject:
   m_ObjectHideFlags: 0
