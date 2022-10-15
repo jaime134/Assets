@@ -8,6 +8,12 @@ public class Observer : MonoBehaviour
     public GameEnding gameEnding;
 
     bool m_IsPlayerInRange;
+    AudioSource siren;
+
+    void Start()
+    {
+        siren = GetComponent<AudioSource>();
+    }
 
     void OnTriggerEnter (Collider other)
     {
@@ -20,6 +26,7 @@ public class Observer : MonoBehaviour
             //    Debug.Log("Is gargoyle");
             //}
             m_IsPlayerInRange = true;
+            siren.Play();
         }
     }
 
@@ -28,6 +35,7 @@ public class Observer : MonoBehaviour
         if (other.transform == player)
         {
             m_IsPlayerInRange = false;
+            siren.Stop();
         }
     }
 
@@ -44,7 +52,7 @@ public class Observer : MonoBehaviour
                 if (raycastHit.collider.transform == player)
                 {
                     Debug.Log(raycastHit.transform);
-                    gameEnding.CaughtPlayer();
+                    //gameEnding.CaughtPlayer();
                 }
             }
         }

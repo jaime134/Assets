@@ -2397,7 +2397,7 @@ PrefabInstance:
         type: 3}
       propertyPath: nextWaypoint
       value: 
-      objectReference: {fileID: 177692766}
+      objectReference: {fileID: 372131255}
     - target: {fileID: 7787681258065136404, guid: ae1e07590779b124a91c94541bb29fb4,
         type: 3}
       propertyPath: m_Name
@@ -3493,6 +3493,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 840455984}
     m_Modifications:
+    - target: {fileID: 1161586607822365247, guid: abeb186619cc7e6419cb81e1e4dfa162,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 1176990128951978394, guid: abeb186619cc7e6419cb81e1e4dfa162,
         type: 3}
       propertyPath: m_Enabled
@@ -3566,7 +3571,7 @@ PrefabInstance:
     - target: {fileID: 6925745739663848697, guid: abeb186619cc7e6419cb81e1e4dfa162,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.56
+      value: 1.16
       objectReference: {fileID: 0}
     - target: {fileID: 6925745739663848697, guid: abeb186619cc7e6419cb81e1e4dfa162,
         type: 3}
@@ -3576,7 +3581,7 @@ PrefabInstance:
     - target: {fileID: 6925745739663848697, guid: abeb186619cc7e6419cb81e1e4dfa162,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -8.02
+      value: -4.87
       objectReference: {fileID: 0}
     - target: {fileID: 6925745739663848697, guid: abeb186619cc7e6419cb81e1e4dfa162,
         type: 3}
@@ -4709,7 +4714,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 405ed255492936543b40a48e25b33398, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextWaypoint: {fileID: 372131255}
+  nextWaypoint: {fileID: 695980990}
   calledWaypoint: {fileID: 6077229646317852079}
 --- !u!1 &1964117705
 GameObject:
@@ -4995,6 +5000,11 @@ PrefabInstance:
       propertyPath: ghosts.Array.data[3]
       value: 
       objectReference: {fileID: 1420777415}
+    - target: {fileID: 1752258002845534791, guid: 39d0626ce76d1884da050e0e509a5540,
+        type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4078855156467671687, guid: 39d0626ce76d1884da050e0e509a5540,
         type: 3}
       propertyPath: player
@@ -6243,11 +6253,6 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5977133675127868113, guid: ae1e07590779b124a91c94541bb29fb4,
         type: 3}
-      propertyPath: speed
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 5977133675127868113, guid: ae1e07590779b124a91c94541bb29fb4,
-        type: 3}
       propertyPath: gameEnding
       value: 
       objectReference: {fileID: 5642716984738007026}
@@ -6269,7 +6274,7 @@ PrefabInstance:
     - target: {fileID: 7787681258065565492, guid: ae1e07590779b124a91c94541bb29fb4,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -26.14
+      value: 14.06
       objectReference: {fileID: 0}
     - target: {fileID: 7787681258065565492, guid: ae1e07590779b124a91c94541bb29fb4,
         type: 3}

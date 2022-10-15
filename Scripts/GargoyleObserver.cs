@@ -10,12 +10,14 @@ public class GargoyleObserver : MonoBehaviour
     public Transform[] ghosts;
 
     Transform m_Transform;
+    AudioSource alert;
     bool m_IsPlayerInRange;
 
     
     void Start()
     {
         m_Transform = GetComponent<Transform>();
+        alert = GetComponent<AudioSource>();
     }
     
     
@@ -31,6 +33,7 @@ public class GargoyleObserver : MonoBehaviour
             //}
             m_IsPlayerInRange = true;
             CallGhost();
+            alert.Play();
         }
     }
 
@@ -57,7 +60,6 @@ public class GargoyleObserver : MonoBehaviour
                 {
                     Debug.Log(raycastHit.transform);
                     // gameEnding.CaughtPlayer ();
-                    
                 }
             }
         }
