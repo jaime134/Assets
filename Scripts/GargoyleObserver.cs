@@ -5,17 +5,21 @@ using UnityEngine;
 public class GargoyleObserver : MonoBehaviour
 {
     public Transform player;
-    public GameEnding gameEnding;
+   
 
     public Transform[] ghosts;
 
     Transform m_Transform;
-    bool m_IsPlayerInRange;
+    
+
+    public static bool detected;
 
     
     void Start()
     {
         m_Transform = GetComponent<Transform>();
+
+         detected = false;
     }
     
     
@@ -25,24 +29,27 @@ public class GargoyleObserver : MonoBehaviour
             
         if (other.transform == player)
         {
-            //if (other == gargoyle.GetComponent<Collider>())
-            //{
-            //Debug.Log("Is gargoyle");
-            //}
-            m_IsPlayerInRange = true;
-            CallGhost();
+            detected = true;
+            //CallGhost();
         }
     }
 
+
+/*
     void OnTriggerExit (Collider other)
     {
         if (other.transform == player)
         {
-            m_IsPlayerInRange = false;
+            detected = false;
         }
     }
 
-    
+*/
+    void Update(){
+
+       
+    }
+    /*
     void Update ()
     {
         if (m_IsPlayerInRange)
@@ -62,6 +69,7 @@ public class GargoyleObserver : MonoBehaviour
             }
         }
     }
+    */
 
     void CallGhost()
     {
@@ -81,9 +89,12 @@ public class GargoyleObserver : MonoBehaviour
 
         if (calledGhost == 0)
         {
-            Ghost0Movement.called = true;
-            Ghost0Movement.calledPosition = m_Transform.position;
+            MaquinaEstados.called = true;
+            GhostMovement.calledPosition = m_Transform.position;
         }
+
+
+        /*
 
         else if (calledGhost == 1)
         {
@@ -102,6 +113,7 @@ public class GargoyleObserver : MonoBehaviour
             Ghost3Movement.called = true;
             Ghost3Movement.calledPosition = m_Transform.position;
         }
+        */
 
         else  //Si es -1
         {
