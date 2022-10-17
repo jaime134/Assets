@@ -5,35 +5,35 @@ using UnityEngine;
 public class Observer : MonoBehaviour
 {
     public Transform player;
-    public GameEnding gameEnding;
-
-    bool m_IsPlayerInRange;
 
     void OnTriggerEnter (Collider other)
     {
-        //var gargoyle = GameObject.FindWithTag("Gargoyle");
             
         if (other.transform == player)
         {
-            //if (other == gargoyle.GetComponent<Collider>())
-            //{
-            //    Debug.Log("Is gargoyle");
-            //}
-            m_IsPlayerInRange = true;
+            GhostMovement.pursue = true;
+            //Ghost1Movement.pursue = true;
+            //Ghost2Movement.pursue = true;
+            //Ghost3Movement.pursue = true;
+
         }
     }
 
-    void OnTriggerExit (Collider other)
+
+
+
+
+    /*void OnTriggerExit (Collider other)
     {
         if (other.transform == player)
         {
             m_IsPlayerInRange = false;
         }
-    }
+    }*/
 
-    void Update ()
+    /*void Update ()
     {
-        if (m_IsPlayerInRange)
+        if (m_IsPlayerSeen)
         {
             Vector3 direction = player.position - transform.position + Vector3.up;
             Ray ray = new Ray(transform.position, direction);
@@ -48,5 +48,5 @@ public class Observer : MonoBehaviour
                 }
             }
         }
-    }
+    }*/
 }
