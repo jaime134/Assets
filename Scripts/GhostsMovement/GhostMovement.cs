@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class GhostMovement : MonoBehaviour
 {
@@ -17,11 +18,12 @@ public class GhostMovement : MonoBehaviour
 
     GameObject lastWaypoint = null;
 
-
     public static bool pursue;
     public static bool patrol;
     public static bool called;
 
+    public float timer = 0;
+    public int patrolTime = 10;
 
     void Start()
     {
@@ -111,8 +113,15 @@ public class GhostMovement : MonoBehaviour
         {
             patrol = false;
             called = false;
+            timer += Time.deltaTime;
 
-            //Poner aqui las condiciones de parada (chocar al jugador o que se acabe el tiempo de persecucuión)
+            if (timer >= patrolTime) //Pasado tiempo maximo de patruya
+            {
+                Debug.Log("VUELTA A LA PATRUYA");
+                patrol = true;
+                pursue = false;
+                timer = 0;
+            }
 
             Debug.Log("PERSIGUIENDO");
 
@@ -151,11 +160,7 @@ public class GhostMovement : MonoBehaviour
 
         }
 
-       
-
-
     }
-
 
 
 }
