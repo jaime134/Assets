@@ -4,9 +4,9 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
 
-public class GhostMovement : MonoBehaviour
+public class Ghost3Movement : MonoBehaviour
 {
-   Quaternion _lookRotation;
+    Quaternion _lookRotation;
     Vector3 _direction;
     
     float m_velocidad = 1.5f;
@@ -118,6 +118,7 @@ public class GhostMovement : MonoBehaviour
             if (timer >= patrolTime) //Pasado tiempo maximo de patruya
             {
                 Debug.Log("VUELTA A LA PATRUYA");
+                Observer.m_IsPlayerInRange = false;
                 patrol = true;
                 pursue = false;
                 timer = 0;

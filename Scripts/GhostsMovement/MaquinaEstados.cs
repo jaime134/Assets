@@ -19,7 +19,7 @@ public class MaquinaEstados : MonoBehaviour
 
     void Update()
     {
-        if(GargoyleObserver.detected){
+        /*if(GargoyleObserver.detected){
 
             patrol = false;
             called = true;
@@ -36,7 +36,7 @@ public class MaquinaEstados : MonoBehaviour
         if(called== false && pursue ==false){
 
             patrol = true;
-        }
+        }*/
 
     }
 

@@ -11,16 +11,14 @@ public class GargoyleObserver : MonoBehaviour
     public GameObject neighbor;
 
     Transform m_Transform;
-    
-
-    public static bool detected;
+    AudioSource alert;
+   
 
     
     void Start()
     {
         m_Transform = GetComponent<Transform>();
-
-         //detected = false;
+        alert = GetComponent<AudioSource>();
     }
     
     
@@ -29,20 +27,10 @@ public class GargoyleObserver : MonoBehaviour
             
         if (other.transform == player)
         {
-            //detected = true;
             CallGhost();
+            alert.Play();
         }
     }
-
-
-
-    /*void OnTriggerExit (Collider other)
-    {
-        if (other.transform == player)
-        {
-            detected = false;
-        }
-    }*/
 
     void CallGhost()
     {
@@ -63,12 +51,11 @@ public class GargoyleObserver : MonoBehaviour
         if (calledGhost == 0)
         {
             //MaquinaEstados.called = true;
-            GhostMovement.called = true;
-            GhostMovement.calledWaypoint = neighbor;
+            Ghost0Movement.called = true;
+            Ghost0Movement.calledWaypoint = neighbor;
+            
         }
 
-
-        /*
 
         else if (calledGhost == 1)
         {
@@ -87,7 +74,7 @@ public class GargoyleObserver : MonoBehaviour
             Ghost3Movement.called = true;
             Ghost3Movement.calledWaypoint = neighbor;
         }
-        */
+        
 
         else  //Si es -1
         {

@@ -11,9 +11,18 @@ public class SpiderMovement : MonoBehaviour
     GameObject lastWaypoint = null;
     Quaternion _lookRotation;
     Vector3 _direction;
+    bool faster = false;
+
+    void Start()
+    {
+        InvokeRepeating("SpeedUp", 0f, 5f);
+    }
 
     void Update()
-    {   
+    {
+        if (!faster) speed = 1f;
+        else speed = 3f;
+        
         if (transform.position == nextWaypoint.transform.position)
             {
                 var listNeighbors = nextWaypoint.gameObject.GetComponent<Neighbors>().neighbors;
@@ -38,5 +47,11 @@ public class SpiderMovement : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player") gameEnding.CaughtPlayer();
+    }
+
+    void SpeedUp()
+    {
+        if (faster) faster = false;
+        else faster = true;
     }
 }

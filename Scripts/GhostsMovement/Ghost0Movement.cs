@@ -5,36 +5,159 @@ using UnityEngine.AI;
 
 public class Ghost0Movement : MonoBehaviour
 {
-    public NavMeshAgent navMeshAgent;
-    public Transform[] waypoints;
+    Quaternion _lookRotation;
+    Vector3 _direction;
 
+    float m_velocidad = 1.5f;
+    float turnSpeed = 50f;
+
+    public GameObject nextWaypoint;
+    public static GameObject calledWaypoint;
+    public GameObject pursueWaypoint;
+
+    GameObject lastWaypoint = null;
+
+    public static bool pursue;
+    public static bool patrol;
     public static bool called;
-    public static Vector3 calledPosition;
 
-    int m_CurrentWaypointIndex;
+    public float timer = 0;
+    public int patrolTime = 10;
 
     void Start()
     {
-        navMeshAgent.SetDestination(waypoints[0].position);
+        patrol = true;
         called = false;
+        pursue = false;
+
     }
 
-    void Update()
+    void FixedUpdate()
     {
-        if (called)
+        if (patrol)
         {
-            navMeshAgent.SetDestination(calledPosition);
-            called = false;
+
+            Debug.Log("PATRUYANDO");
+
+            if (transform.position == nextWaypoint.transform.position)
+            {
+                var listNeighbors = nextWaypoint.gameObject.GetComponent<Neighbors>().neighbors;
+                var newWaypoint = listNeighbors[Random.Range(0, listNeighbors.Length)];
+
+                while (newWaypoint == lastWaypoint)
+                {
+                    newWaypoint = listNeighbors[Random.Range(0, listNeighbors.Length)];
+                }
+
+                lastWaypoint = nextWaypoint;
+                nextWaypoint = newWaypoint;
+
+                _direction = (nextWaypoint.transform.position - transform.position).normalized;
+                _lookRotation = Quaternion.LookRotation(_direction);
+                transform.rotation = Quaternion.Slerp(transform.rotation, _lookRotation, Time.deltaTime * turnSpeed);
+            }
+
+            transform.position = Vector3.MoveTowards(transform.position, nextWaypoint.transform.position, m_velocidad * Time.deltaTime);
         }
 
-        else
+
+        if (called)
         {
-            if (navMeshAgent.remainingDistance < navMeshAgent.stoppingDistance)
+            patrol = false;
+            pursue = false;
+
+            if (transform.position == calledWaypoint.transform.position)
             {
-                m_CurrentWaypointIndex = (m_CurrentWaypointIndex + 1) % waypoints.Length;
-                navMeshAgent.SetDestination(waypoints[m_CurrentWaypointIndex].position);
+
+                //MaquinaEstados.called = false;
+                //GargoyleObserver.detected = false;
+                called = false;
+                patrol = true;
+
             }
+
+            Debug.Log("CALLED");
+
+            if (transform.position == nextWaypoint.transform.position)
+            {
+                var listNeighbors = nextWaypoint.gameObject.GetComponent<Neighbors>().neighbors;
+
+                float minDist = 100000000f;
+                GameObject newWaypoint = null;
+
+                foreach (GameObject neighbor in listNeighbors)
+                {
+                    float dist = Mathf.Sqrt(Mathf.Pow(neighbor.transform.position.x - calledWaypoint.transform.position.x, 2) + Mathf.Pow(neighbor.transform.position.z - calledWaypoint.transform.position.z, 2));
+                    if ((dist < minDist) && (neighbor != lastWaypoint))
+                    {
+                        minDist = dist;
+                        newWaypoint = neighbor;
+                    }
+
+                }
+
+                lastWaypoint = nextWaypoint;
+                nextWaypoint = newWaypoint;
+
+                _direction = (nextWaypoint.transform.position - transform.position).normalized;
+                _lookRotation = Quaternion.LookRotation(_direction);
+                transform.rotation = Quaternion.Slerp(transform.rotation, _lookRotation, Time.deltaTime * turnSpeed);
+            }
+
+            transform.position = Vector3.MoveTowards(transform.position, nextWaypoint.transform.position, m_velocidad * Time.deltaTime);
+
         }
-        
+
+        if (pursue)
+        {
+            patrol = false;
+            called = false;
+            timer += Time.deltaTime;
+
+            if (timer >= patrolTime) //Pasado tiempo maximo de patruya
+            {
+                Debug.Log("VUELTA A LA PATRUYA");
+                patrol = true;
+                pursue = false;
+                timer = 0;
+            }
+
+            Debug.Log("PERSIGUIENDO");
+
+            if (transform.position == nextWaypoint.transform.position)
+            {
+                var listNeighbors = nextWaypoint.gameObject.GetComponent<Neighbors>().neighbors;
+
+                float minDist = 100000000f;
+                GameObject newWaypoint = null;
+
+
+                foreach (GameObject neighbor in listNeighbors)
+                {
+
+
+                    float dist = Mathf.Sqrt(Mathf.Pow(neighbor.transform.position.x - pursueWaypoint.transform.position.x, 2) + Mathf.Pow(neighbor.transform.position.z - pursueWaypoint.transform.position.z, 2));
+
+                    if (dist < minDist)// && (neighbor != lastWaypoint))
+                    {
+                        minDist = dist;
+                        newWaypoint = neighbor;
+
+                    }
+
+                }
+
+                lastWaypoint = nextWaypoint;
+                nextWaypoint = newWaypoint;
+
+                _direction = (nextWaypoint.transform.position - transform.position).normalized;
+                _lookRotation = Quaternion.LookRotation(_direction);
+                transform.rotation = Quaternion.Slerp(transform.rotation, _lookRotation, Time.deltaTime * turnSpeed);
+            }
+
+            transform.position = Vector3.MoveTowards(transform.position, nextWaypoint.transform.position, m_velocidad * Time.deltaTime);
+
+        }
+
     }
 }

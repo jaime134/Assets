@@ -5,18 +5,23 @@ using UnityEngine;
 public class Observer : MonoBehaviour
 {
     public Transform player;
+    public static bool m_IsPlayerInRange;
 
     void OnTriggerEnter (Collider other)
     {
-            
+
         if (other.transform == player)
         {
-            GhostMovement.pursue = true;
-            //Ghost1Movement.pursue = true;
-            //Ghost2Movement.pursue = true;
-            //Ghost3Movement.pursue = true;
+            /*Ghost0Movement.pursue = true;
+            Ghost1Movement.pursue = true;
+            Ghost2Movement.pursue = true;
+            Ghost3Movement.pursue = true;*/
+
+            m_IsPlayerInRange = true;
 
         }
+
+        
     }
 
 
@@ -31,9 +36,9 @@ public class Observer : MonoBehaviour
         }
     }*/
 
-    /*void Update ()
+    void Update ()
     {
-        if (m_IsPlayerSeen)
+        if (m_IsPlayerInRange)
         {
             Vector3 direction = player.position - transform.position + Vector3.up;
             Ray ray = new Ray(transform.position, direction);
@@ -44,9 +49,12 @@ public class Observer : MonoBehaviour
                 if (raycastHit.collider.transform == player)
                 {
                     Debug.Log(raycastHit.transform);
-                    gameEnding.CaughtPlayer();
+                    Ghost0Movement.pursue = true;
+                    Ghost1Movement.pursue = true;
+                    Ghost2Movement.pursue = true;
+                    Ghost3Movement.pursue = true;
                 }
             }
         }
-    }*/
+    }
 }
