@@ -10,13 +10,15 @@ public class Ghost3Movement : MonoBehaviour
     Vector3 _direction;
     
     float m_velocidad = 1.5f;
-    float turnSpeed = 50f;
+    float turnSpeed = 100f;
 
     public GameObject nextWaypoint;
     public static GameObject calledWaypoint;
     public GameObject pursueWaypoint;
 
     GameObject lastWaypoint = null;
+
+    public GameObject player;
 
     public static bool pursue;
     public static bool patrol;
@@ -30,15 +32,13 @@ public class Ghost3Movement : MonoBehaviour
         patrol = true;
         called = false;
         pursue = false;
-
     }
 
     void FixedUpdate()
     {
         if(patrol)
         {
-
-            Debug.Log("PATRUYANDO");
+            Debug.Log("PATRULLANDO");
 
             if (transform.position == nextWaypoint.transform.position)
             {
@@ -60,7 +60,6 @@ public class Ghost3Movement : MonoBehaviour
 
             transform.position = Vector3.MoveTowards(transform.position, nextWaypoint.transform.position, m_velocidad * Time.deltaTime);
         }
-
 
         if (called)
         {
@@ -94,7 +93,6 @@ public class Ghost3Movement : MonoBehaviour
                          minDist = dist;
                          newWaypoint = neighbor;
                     }
-                    
                 }
 
                 lastWaypoint = nextWaypoint;
@@ -106,7 +104,6 @@ public class Ghost3Movement : MonoBehaviour
             }
 
             transform.position = Vector3.MoveTowards(transform.position, nextWaypoint.transform.position, m_velocidad * Time.deltaTime);
-           
         }
 
         if (pursue)
@@ -117,36 +114,37 @@ public class Ghost3Movement : MonoBehaviour
 
             if (timer >= patrolTime) //Pasado tiempo maximo de patruya
             {
-                Debug.Log("VUELTA A LA PATRUYA");
+                Debug.Log("VUELTA A LA PATRULLA");
                 Observer.m_IsPlayerInRange = false;
                 patrol = true;
                 pursue = false;
                 timer = 0;
             }
 
-            Debug.Log("PERSIGUIENDO");
+            //Debug.Log("PERSIGUIENDO");
 
             if (transform.position == nextWaypoint.transform.position)
             {
                 var listNeighbors = nextWaypoint.gameObject.GetComponent<Neighbors>().neighbors;
 
                 float minDist = 100000000f;
-                GameObject newWaypoint = null;
-    
+                GameObject newWaypoint = player;
 
                 foreach (GameObject neighbor in listNeighbors)
-                {
-
-                
+                {                
                     float dist = Mathf.Sqrt(Mathf.Pow(neighbor.transform.position.x - pursueWaypoint.transform.position.x, 2) + Mathf.Pow(neighbor.transform.position.z - pursueWaypoint.transform.position.z, 2));
-                    
+                    float playerDist = Mathf.Sqrt(Mathf.Pow(newWaypoint.transform.position.x - pursueWaypoint.transform.position.x, 2) + Mathf.Pow(newWaypoint.transform.position.z - pursueWaypoint.transform.position.z, 2));
+
                     if (dist < minDist)// && (neighbor != lastWaypoint))
                     {
                         minDist = dist;
                         newWaypoint = neighbor;
-                
                     }
-                    
+
+                    //if (minDist < playerDist)
+                    //{
+                    //    newWaypoint = player;
+                    //}
                 }
 
                 lastWaypoint = nextWaypoint;
@@ -158,10 +156,7 @@ public class Ghost3Movement : MonoBehaviour
             }
 
             transform.position = Vector3.MoveTowards(transform.position, nextWaypoint.transform.position, m_velocidad * Time.deltaTime);
-
         }
 
     }
-
-
 }

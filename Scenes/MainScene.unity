@@ -1937,6 +1937,11 @@ PrefabInstance:
       propertyPath: waypoints.Array.data[3]
       value: 
       objectReference: {fileID: 177692767}
+    - target: {fileID: 1217093007957287545, guid: abeb186619cc7e6419cb81e1e4dfa162,
+        type: 3}
+      propertyPath: m_Height
+      value: 4.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2071595117233987652, guid: abeb186619cc7e6419cb81e1e4dfa162,
         type: 3}
       propertyPath: player
@@ -2054,6 +2059,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nextWaypoint: {fileID: 1621696773}
   pursueWaypoint: {fileID: 6077229646317852079}
+  player: {fileID: 6077229646317852079}
   timer: 0
   patrolTime: 30
 --- !u!1 &545799615
@@ -2430,7 +2436,7 @@ PrefabInstance:
     - target: {fileID: 7787681258065136404, guid: ae1e07590779b124a91c94541bb29fb4,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7787681258065565492, guid: ae1e07590779b124a91c94541bb29fb4,
         type: 3}
@@ -3544,6 +3550,11 @@ PrefabInstance:
       propertyPath: pursueWaypoint
       value: 
       objectReference: {fileID: 6077229646317852079}
+    - target: {fileID: 1217093007957287545, guid: abeb186619cc7e6419cb81e1e4dfa162,
+        type: 3}
+      propertyPath: m_Height
+      value: 4.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2071595117233987652, guid: abeb186619cc7e6419cb81e1e4dfa162,
         type: 3}
       propertyPath: player
@@ -3631,6 +3642,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nextWaypoint: {fileID: 53806769}
   pursueWaypoint: {fileID: 6077229646317852079}
+  player: {fileID: 6077229646317852079}
   timer: 0
   patrolTime: 30
 --- !u!1 &1436194373 stripped
@@ -4264,6 +4276,11 @@ PrefabInstance:
       propertyPath: waypoints.Array.data[1]
       value: 
       objectReference: {fileID: 1811816029}
+    - target: {fileID: 1217093007957287545, guid: abeb186619cc7e6419cb81e1e4dfa162,
+        type: 3}
+      propertyPath: m_Height
+      value: 4.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2071595117233987652, guid: abeb186619cc7e6419cb81e1e4dfa162,
         type: 3}
       propertyPath: player
@@ -4381,6 +4398,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nextWaypoint: {fileID: 820520360}
   pursueWaypoint: {fileID: 6077229646317852079}
+  player: {fileID: 6077229646317852079}
   timer: 0
   patrolTime: 30
 --- !u!1 &1879294950
@@ -6011,6 +6029,11 @@ PrefabInstance:
       propertyPath: waypoints.Array.data[1]
       value: 
       objectReference: {fileID: 449659950}
+    - target: {fileID: 1217093007957287545, guid: abeb186619cc7e6419cb81e1e4dfa162,
+        type: 3}
+      propertyPath: m_Height
+      value: 4.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2071595117233987652, guid: abeb186619cc7e6419cb81e1e4dfa162,
         type: 3}
       propertyPath: player
@@ -6144,6 +6167,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nextWaypoint: {fileID: 39706424}
   pursueWaypoint: {fileID: 6077229646317852079}
+  player: {fileID: 6077229646317852079}
   timer: 0
   patrolTime: 30
 --- !u!1001 &7048266704142702877
@@ -6330,7 +6354,7 @@ PrefabInstance:
     - target: {fileID: 7787681258065136404, guid: ae1e07590779b124a91c94541bb29fb4,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7787681258065565492, guid: ae1e07590779b124a91c94541bb29fb4,
         type: 3}
@@ -6340,7 +6364,7 @@ PrefabInstance:
     - target: {fileID: 7787681258065565492, guid: ae1e07590779b124a91c94541bb29fb4,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.11
+      value: 1.1100001
       objectReference: {fileID: 0}
     - target: {fileID: 7787681258065565492, guid: ae1e07590779b124a91c94541bb29fb4,
         type: 3}

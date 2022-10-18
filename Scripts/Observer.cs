@@ -48,7 +48,7 @@ public class Observer : MonoBehaviour
             {
                 if (raycastHit.collider.transform == player)
                 {
-                    Debug.Log(raycastHit.transform);
+                    //Debug.Log(raycastHit.transform);
                     Ghost0Movement.pursue = true;
                     Ghost1Movement.pursue = true;
                     Ghost2Movement.pursue = true;
