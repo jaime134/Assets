@@ -128,12 +128,12 @@ public class Ghost3Movement : MonoBehaviour
                 var listNeighbors = nextWaypoint.gameObject.GetComponent<Neighbors>().neighbors;
 
                 float minDist = 100000000f;
-                GameObject newWaypoint = player;
+                GameObject newWaypoint = null;
 
                 foreach (GameObject neighbor in listNeighbors)
                 {                
                     float dist = Mathf.Sqrt(Mathf.Pow(neighbor.transform.position.x - pursueWaypoint.transform.position.x, 2) + Mathf.Pow(neighbor.transform.position.z - pursueWaypoint.transform.position.z, 2));
-                    float playerDist = Mathf.Sqrt(Mathf.Pow(newWaypoint.transform.position.x - pursueWaypoint.transform.position.x, 2) + Mathf.Pow(newWaypoint.transform.position.z - pursueWaypoint.transform.position.z, 2));
+                    float playerDist = Mathf.Sqrt(Mathf.Pow(nextWaypoint.transform.position.x - pursueWaypoint.transform.position.x, 2) + Mathf.Pow(nextWaypoint.transform.position.z - pursueWaypoint.transform.position.z, 2));
 
                     if (dist < minDist)// && (neighbor != lastWaypoint))
                     {
@@ -141,10 +141,10 @@ public class Ghost3Movement : MonoBehaviour
                         newWaypoint = neighbor;
                     }
 
-                    //if (minDist < playerDist)
-                    //{
-                    //    newWaypoint = player;
-                    //}
+                    if (minDist > playerDist)
+                    {
+                        newWaypoint = player;
+                    }
                 }
 
                 lastWaypoint = nextWaypoint;

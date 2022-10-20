@@ -9,16 +9,21 @@ public class GargoyleObserver : MonoBehaviour
 
     public Transform[] ghosts;
     public GameObject neighbor;
+    public CapsuleCollider pointOfView;
 
     Transform m_Transform;
     AudioSource alert;
    
-
-    
     void Start()
     {
         m_Transform = GetComponent<Transform>();
         alert = GetComponent<AudioSource>();
+    }
+
+    void Update()
+    {
+        if (Ghost0Movement.pursue) pointOfView.enabled = false;
+        else pointOfView.enabled = true;
     }
     
     

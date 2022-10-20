@@ -31,7 +31,7 @@ public class GameEnding : MonoBehaviour
             KeyManager.keyCanvas.enabled = false;
         }
 
-        else doorCanvas.enabled = true;
+        else if (other.gameObject == player && !KeyManager.hasKey) doorCanvas.enabled = true;
     }
 
     void OnTriggerExit (Collider other)

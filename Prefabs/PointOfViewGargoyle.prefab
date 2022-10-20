@@ -63,6 +63,9 @@ MonoBehaviour:
   player: {fileID: 2008973354732098957, guid: e58a8494f35e17f45ba5bbffdfb92517, type: 3}
   ghosts: []
   neighbor: {fileID: 0}
+  pointOfView: {fileID: 4387422829284133010}
+  siren: {fileID: 0}
+  alert: {fileID: 7096448055044165934}
 --- !u!82 &7096448055044165934
 AudioSource:
   m_ObjectHideFlags: 0
