@@ -115,6 +115,10 @@ MonoBehaviour:
   keyCanvas: {fileID: 0}
   gameEnding: {fileID: 0}
   key: {fileID: 374289202576707483}
+  waypoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   hasKey: 0
 --- !u!95 &4784826735112008319
 Animator:
@@ -124,7 +128,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 374289202576707483}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 2eef0a1d8ff81a44fbec9ab6985a0c6b, type: 2}
   m_CullingMode: 0

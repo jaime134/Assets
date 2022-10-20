@@ -484,6 +484,18 @@ PrefabInstance:
       propertyPath: gameEnding
       value: 
       objectReference: {fileID: 5642716984738007026}
+    - target: {fileID: 959025397, guid: 78df1db2fbc8ec64f949fac0c05bf693, type: 3}
+      propertyPath: waypoints.Array.data[0]
+      value: 
+      objectReference: {fileID: 372131255}
+    - target: {fileID: 959025397, guid: 78df1db2fbc8ec64f949fac0c05bf693, type: 3}
+      propertyPath: waypoints.Array.data[1]
+      value: 
+      objectReference: {fileID: 387721310}
+    - target: {fileID: 959025397, guid: 78df1db2fbc8ec64f949fac0c05bf693, type: 3}
+      propertyPath: waypoints.Array.data[2]
+      value: 
+      objectReference: {fileID: 1414646114}
     - target: {fileID: 374289202576707483, guid: 78df1db2fbc8ec64f949fac0c05bf693,
         type: 3}
       propertyPath: m_Name
@@ -497,17 +509,17 @@ PrefabInstance:
     - target: {fileID: 3705028537381535112, guid: 78df1db2fbc8ec64f949fac0c05bf693,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -10.52
+      value: 17.42
       objectReference: {fileID: 0}
     - target: {fileID: 3705028537381535112, guid: 78df1db2fbc8ec64f949fac0c05bf693,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.68
+      value: 0.82
       objectReference: {fileID: 0}
     - target: {fileID: 3705028537381535112, guid: 78df1db2fbc8ec64f949fac0c05bf693,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2.58
+      value: 3.23
       objectReference: {fileID: 0}
     - target: {fileID: 3705028537381535112, guid: 78df1db2fbc8ec64f949fac0c05bf693,
         type: 3}
@@ -2415,11 +2427,6 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5977133675127868113, guid: ae1e07590779b124a91c94541bb29fb4,
         type: 3}
-      propertyPath: speed
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 5977133675127868113, guid: ae1e07590779b124a91c94541bb29fb4,
-        type: 3}
       propertyPath: gameEnding
       value: 
       objectReference: {fileID: 5642716984738007026}
@@ -2432,11 +2439,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Spider (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 7787681258065136404, guid: ae1e07590779b124a91c94541bb29fb4,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7787681258065565492, guid: ae1e07590779b124a91c94541bb29fb4,
         type: 3}
@@ -2539,7 +2541,7 @@ Camera:
     height: 1
   near clip plane: 0.1
   far clip plane: 5000
-  field of view: 48
+  field of view: 50
   orthographic: 0
   orthographic size: 10
   m_Depth: -1
@@ -3818,7 +3820,7 @@ MonoBehaviour:
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 2008973354732098957}
   m_Lens:
-    FieldOfView: 48
+    FieldOfView: 50
     OrthographicSize: 10
     NearClipPlane: 0.1
     FarClipPlane: 5000
@@ -6354,7 +6356,7 @@ PrefabInstance:
     - target: {fileID: 7787681258065136404, guid: ae1e07590779b124a91c94541bb29fb4,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7787681258065565492, guid: ae1e07590779b124a91c94541bb29fb4,
         type: 3}

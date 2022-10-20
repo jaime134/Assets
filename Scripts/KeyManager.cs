@@ -7,12 +7,15 @@ public class KeyManager : MonoBehaviour
     public Canvas keyCanvas;
     public GameEnding gameEnding;
     public GameObject key;
+    public GameObject[] waypoints;
     public bool hasKey;
 
     void Start()
     {
         keyCanvas.enabled = false;
         hasKey = false;
+
+        key.transform.position = waypoints[Random.Range(0, waypoints.Length)].transform.position;
     }
 
     void OnCollisionEnter(Collision other)
@@ -22,6 +25,6 @@ public class KeyManager : MonoBehaviour
             hasKey = true;
             keyCanvas.enabled = true;
             key.SetActive(false);
-        } 
+        }
     }
 }
