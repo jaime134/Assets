@@ -5,36 +5,26 @@ using UnityEngine;
 public class Observer : MonoBehaviour
 {
     public Transform player;
-    public static bool m_IsPlayerInRange;
+    public bool m_IsPlayerInRange;
 
     void OnTriggerEnter (Collider other)
     {
 
         if (other.transform == player)
         {
-            /*Ghost0Movement.pursue = true;
-            Ghost1Movement.pursue = true;
-            Ghost2Movement.pursue = true;
-            Ghost3Movement.pursue = true;*/
-
             m_IsPlayerInRange = true;
-
         }
 
         
     }
 
-
-
-
-
-    /*void OnTriggerExit (Collider other)
+    void OnTriggerExit (Collider other)
     {
         if (other.transform == player)
         {
             m_IsPlayerInRange = false;
         }
-    }*/
+    }
 
     void Update ()
     {
@@ -48,7 +38,6 @@ public class Observer : MonoBehaviour
             {
                 if (raycastHit.collider.transform == player)
                 {
-                    //Debug.Log(raycastHit.transform);
                     Ghost0Movement.pursue = true;
                     Ghost1Movement.pursue = true;
                     Ghost2Movement.pursue = true;
