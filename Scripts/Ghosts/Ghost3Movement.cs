@@ -55,8 +55,6 @@ public class Ghost3Movement : MonoBehaviour
 
                 lastWaypoint = nextWaypoint;
                 nextWaypoint = newWaypoint;
-
-
             }
 
             _direction = (nextWaypoint.transform.position - transform.position).normalized;
@@ -82,7 +80,9 @@ public class Ghost3Movement : MonoBehaviour
             if (transform.position == calledWaypoint.transform.position)
             {
                 called = false;
-                patrol = true;
+
+                if (Ghost2Movement.patrol || Ghost2Movement.called) patrol = true;
+                else pursue = true;
             }
 
             if (transform.position == nextWaypoint.transform.position)
@@ -104,8 +104,6 @@ public class Ghost3Movement : MonoBehaviour
 
                 lastWaypoint = nextWaypoint;
                 nextWaypoint = newWaypoint;
-
-
             }
 
             _direction = (nextWaypoint.transform.position - transform.position).normalized;
@@ -114,7 +112,6 @@ public class Ghost3Movement : MonoBehaviour
 
             transform.position = Vector3.MoveTowards(transform.position, nextWaypoint.transform.position, m_velocidad * Time.deltaTime);
         }
-
 
 
         //////////////////////////////////////////////////////
@@ -145,8 +142,6 @@ public class Ghost3Movement : MonoBehaviour
                 }
             }
 
-
-
             if (transform.position == nextWaypoint.transform.position)
             {
                 float minDist = 100000000f;
@@ -175,7 +170,6 @@ public class Ghost3Movement : MonoBehaviour
 
                 lastWaypoint = nextWaypoint;
                 nextWaypoint = newWaypoint;
-
             }
 
             _direction = (nextWaypoint.transform.position - transform.position).normalized;

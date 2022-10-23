@@ -8,6 +8,7 @@ public class KeyManager : MonoBehaviour
     public GameEnding gameEnding;
     public GameObject key;
     public GameObject[] waypoints;
+    public AudioSource keyAudio;
     public bool hasKey;
 
     void Start()
@@ -25,6 +26,7 @@ public class KeyManager : MonoBehaviour
             hasKey = true;
             keyCanvas.enabled = true;
             key.SetActive(false);
+            keyAudio.Play();
         }
     }
 }
