@@ -65,6 +65,73 @@ public class Ghost0Movement : MonoBehaviour
 
 
         //////////////////////////////////////////////////////
+        /////              PERSIGUIENDO              /////////
+        //////////////////////////////////////////////////////
+
+
+        if (pursue)
+        {
+            Debug.Log("PERSIGUIENDO");
+
+            patrol = false;
+            called = false;
+            timer += Time.deltaTime;
+
+            if (timer >= patrolTime) //Pasado tiempo maximo de patruya
+            {
+                Debug.Log("VUELTA A LA PATRULLA");
+
+                patrol = true;
+                pursue = false;
+                timer = 0;
+
+                if (nextWaypoint == player)
+                {
+                    var newWaypoint = CatchPlayer.myWaypoint;
+                    lastWaypoint = nextWaypoint;
+                    nextWaypoint = newWaypoint;
+                }
+            }
+
+            if (transform.position == nextWaypoint.transform.position)
+            {
+                float minDist = 100000000f;
+                GameObject newWaypoint = null;
+
+                if (nextWaypoint == CatchPlayer.myWaypoint)  //Para ir directo al personaje
+                {
+                    newWaypoint = player;
+                }
+
+                else
+                {
+                    var listNeighbors = nextWaypoint.gameObject.GetComponent<Neighbors>().neighbors;
+
+                    foreach (GameObject neighbor in listNeighbors)
+                    {
+                        float dist = Mathf.Sqrt(Mathf.Pow(neighbor.transform.position.x - pursueWaypoint.transform.position.x, 2) + Mathf.Pow(neighbor.transform.position.z - pursueWaypoint.transform.position.z, 2));
+
+                        if (dist < minDist)
+                        {
+                            minDist = dist;
+                            newWaypoint = neighbor;
+                        }
+                    }
+                }
+
+                lastWaypoint = nextWaypoint;
+                nextWaypoint = newWaypoint;
+            }
+
+            _direction = (nextWaypoint.transform.position - transform.position).normalized;
+            _lookRotation = Quaternion.LookRotation(_direction);
+            transform.rotation = Quaternion.Slerp(transform.rotation, _lookRotation, Time.deltaTime * turnSpeed);
+
+            transform.position = Vector3.MoveTowards(transform.position, nextWaypoint.transform.position, m_velocidad * Time.deltaTime);
+        }
+
+
+        //////////////////////////////////////////////////////
         /////              ALERTADO                  /////////
         //////////////////////////////////////////////////////
 
@@ -78,9 +145,10 @@ public class Ghost0Movement : MonoBehaviour
             if (transform.position == calledWaypoint.transform.position)
             {
                 called = false;
+                patrol = true;
 
-                if (Ghost3Movement.patrol || Ghost3Movement.called) patrol = true;
-                else pursue = true;
+                /*if (Ghost2Movement.patrol || Ghost2Movement.called) patrol = true;
+                else pursue = true;*/
             }
 
             if (transform.position == nextWaypoint.transform.position)
@@ -102,74 +170,6 @@ public class Ghost0Movement : MonoBehaviour
 
                 lastWaypoint = nextWaypoint;
                 nextWaypoint = newWaypoint;
-            }
-
-            _direction = (nextWaypoint.transform.position - transform.position).normalized;
-            _lookRotation = Quaternion.LookRotation(_direction);
-            transform.rotation = Quaternion.Slerp(transform.rotation, _lookRotation, Time.deltaTime * turnSpeed);
-
-            transform.position = Vector3.MoveTowards(transform.position, nextWaypoint.transform.position, m_velocidad * Time.deltaTime);
-        }
-
-
-        //////////////////////////////////////////////////////
-        /////              PERSIGUIENDO              /////////
-        //////////////////////////////////////////////////////
-
-        if (pursue)
-        {
-            Debug.Log("PERSIGUIENDO");
-            
-            patrol = false;
-            called = false;
-            timer += Time.deltaTime;
-
-            if (timer >= patrolTime) //Pasado tiempo maximo de patruya
-            {
-                Debug.Log("VUELTA A LA PATRULLA");
-
-                patrol = true;
-                pursue = false;
-                timer = 0;
-
-                if (nextWaypoint == player)
-                {
-                    var newWaypoint = CatchPlayer.myWaypoint;
-                    lastWaypoint = nextWaypoint;
-                    nextWaypoint = newWaypoint;
-                }
-            }
-            
-
-            if (transform.position == nextWaypoint.transform.position)
-            {
-                float minDist = 100000000f;
-                GameObject newWaypoint = null;
-
-                if (nextWaypoint == CatchPlayer.myWaypoint)  //Para ir directo al personaje
-                {
-                    newWaypoint = player;
-                }
-
-                else 
-                { 
-                    var listNeighbors = nextWaypoint.gameObject.GetComponent<Neighbors>().neighbors;
-
-                    foreach (GameObject neighbor in listNeighbors)
-                    {
-                        float dist = Mathf.Sqrt(Mathf.Pow(neighbor.transform.position.x - pursueWaypoint.transform.position.x, 2) + Mathf.Pow(neighbor.transform.position.z - pursueWaypoint.transform.position.z, 2));
-
-                        if (dist < minDist)
-                        {
-                            minDist = dist;
-                            newWaypoint = neighbor;
-                        }
-                    }
-                }
-
-                lastWaypoint = nextWaypoint;
-                nextWaypoint = newWaypoint;
-
             }
 
             _direction = (nextWaypoint.transform.position - transform.position).normalized;

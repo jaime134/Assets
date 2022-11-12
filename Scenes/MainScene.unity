@@ -936,6 +936,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5642716984738007026}
     - target: {fileID: 959025397, guid: 78df1db2fbc8ec64f949fac0c05bf693, type: 3}
+      propertyPath: waypoints.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 959025397, guid: 78df1db2fbc8ec64f949fac0c05bf693, type: 3}
       propertyPath: waypoints.Array.data[0]
       value: 
       objectReference: {fileID: 372131255}
@@ -4949,7 +4953,7 @@ MonoBehaviour:
   pursueWaypoint: {fileID: 6077229646317852079}
   player: {fileID: 6077229646317852079}
   timer: 0
-  patrolTime: 30
+  patrolTime: 20
 --- !u!1 &545799615
 GameObject:
   m_ObjectHideFlags: 0
@@ -10846,7 +10850,7 @@ MonoBehaviour:
   pursueWaypoint: {fileID: 6077229646317852079}
   player: {fileID: 6077229646317852079}
   timer: 0
-  patrolTime: 30
+  patrolTime: 20
 --- !u!1001 &1421690154
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13441,7 +13445,7 @@ MonoBehaviour:
   pursueWaypoint: {fileID: 6077229646317852079}
   player: {fileID: 6077229646317852079}
   timer: 0
-  patrolTime: 30
+  patrolTime: 20
 --- !u!1001 &1849282217
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19409,7 +19413,7 @@ MonoBehaviour:
   pursueWaypoint: {fileID: 6077229646317852079}
   player: {fileID: 6077229646317852079}
   timer: 0
-  patrolTime: 30
+  patrolTime: 20
 --- !u!1001 &7048266704142702877
 PrefabInstance:
   m_ObjectHideFlags: 0

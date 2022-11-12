@@ -65,56 +65,9 @@ public class Ghost2Movement : MonoBehaviour
 
 
         //////////////////////////////////////////////////////
-        /////              ALERTADO                  /////////
-        //////////////////////////////////////////////////////
-
-        if (called)
-        {
-            //Debug.Log("CALLED");
-
-            patrol = false;
-            pursue = false;
-
-            if (transform.position == calledWaypoint.transform.position)
-            {
-                called = false;
-
-                if (Ghost1Movement.patrol || Ghost1Movement.called) patrol = true;
-                else pursue = true;
-            }
-
-            if (transform.position == nextWaypoint.transform.position)
-            {
-                var listNeighbors = nextWaypoint.gameObject.GetComponent<Neighbors>().neighbors;
-
-                float minDist = 100000000f;
-                GameObject newWaypoint = null;
-
-                foreach (GameObject neighbor in listNeighbors)
-                {
-                    float dist = Mathf.Sqrt(Mathf.Pow(neighbor.transform.position.x - calledWaypoint.transform.position.x, 2) + Mathf.Pow(neighbor.transform.position.z - calledWaypoint.transform.position.z, 2));
-                    if ((dist < minDist) && (neighbor != lastWaypoint))
-                    {
-                        minDist = dist;
-                        newWaypoint = neighbor;
-                    }
-                }
-
-                lastWaypoint = nextWaypoint;
-                nextWaypoint = newWaypoint;
-            }
-
-            _direction = (nextWaypoint.transform.position - transform.position).normalized;
-            _lookRotation = Quaternion.LookRotation(_direction);
-            transform.rotation = Quaternion.Slerp(transform.rotation, _lookRotation, Time.deltaTime * turnSpeed);
-
-            transform.position = Vector3.MoveTowards(transform.position, nextWaypoint.transform.position, m_velocidad * Time.deltaTime);
-        }
-
-
-        //////////////////////////////////////////////////////
         /////              PERSIGUIENDO              /////////
         //////////////////////////////////////////////////////
+
 
         if (pursue)
         {
@@ -168,7 +121,55 @@ public class Ghost2Movement : MonoBehaviour
 
                 lastWaypoint = nextWaypoint;
                 nextWaypoint = newWaypoint;
+            }
 
+            _direction = (nextWaypoint.transform.position - transform.position).normalized;
+            _lookRotation = Quaternion.LookRotation(_direction);
+            transform.rotation = Quaternion.Slerp(transform.rotation, _lookRotation, Time.deltaTime * turnSpeed);
+
+            transform.position = Vector3.MoveTowards(transform.position, nextWaypoint.transform.position, m_velocidad * Time.deltaTime);
+        }
+
+
+        //////////////////////////////////////////////////////
+        /////              ALERTADO                  /////////
+        //////////////////////////////////////////////////////
+
+        if (called)
+        {
+            //Debug.Log("CALLED");
+
+            patrol = false;
+            pursue = false;
+
+            if (transform.position == calledWaypoint.transform.position)
+            {
+                called = false;
+                patrol = true;
+
+                /*if (Ghost2Movement.patrol || Ghost2Movement.called) patrol = true;
+                else pursue = true;*/
+            }
+
+            if (transform.position == nextWaypoint.transform.position)
+            {
+                var listNeighbors = nextWaypoint.gameObject.GetComponent<Neighbors>().neighbors;
+
+                float minDist = 100000000f;
+                GameObject newWaypoint = null;
+
+                foreach (GameObject neighbor in listNeighbors)
+                {
+                    float dist = Mathf.Sqrt(Mathf.Pow(neighbor.transform.position.x - calledWaypoint.transform.position.x, 2) + Mathf.Pow(neighbor.transform.position.z - calledWaypoint.transform.position.z, 2));
+                    if ((dist < minDist) && (neighbor != lastWaypoint))
+                    {
+                        minDist = dist;
+                        newWaypoint = neighbor;
+                    }
+                }
+
+                lastWaypoint = nextWaypoint;
+                nextWaypoint = newWaypoint;
             }
 
             _direction = (nextWaypoint.transform.position - transform.position).normalized;
