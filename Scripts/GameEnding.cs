@@ -7,6 +7,7 @@ public class GameEnding : MonoBehaviour
     public float displayImageDuration = 1f;
     public GameObject player;
     public Canvas doorCanvas;
+    public Canvas pursueCanvas;
     public KeyManager KeyManager;
     public CanvasGroup exitBackgroundImageCanvasGroup;
     public AudioSource exitAudio;
@@ -31,12 +32,13 @@ public class GameEnding : MonoBehaviour
             KeyManager.keyCanvas.enabled = false;
         }
 
-        else doorCanvas.enabled = true;
+        else if (other.gameObject == player && !KeyManager.hasKey) doorCanvas.enabled = true;
     }
 
     void OnTriggerExit (Collider other)
     {
         doorCanvas.enabled = false;
+        pursueCanvas.enabled = false;
     }
 
     public void CaughtPlayer ()
@@ -54,6 +56,9 @@ public class GameEnding : MonoBehaviour
         {
             EndLevel (caughtBackgroundImageCanvasGroup, true, caughtAudio);
         }
+
+        if (Ghost0Movement.pursue) pursueCanvas.enabled = true;
+        else pursueCanvas.enabled = false;
     }
 
     void EndLevel (CanvasGroup imageCanvasGroup, bool doRestart, AudioSource audioSource)

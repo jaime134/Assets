@@ -8,68 +8,34 @@ public class GargoyleObserver : MonoBehaviour
    
 
     public Transform[] ghosts;
+    public GameObject neighbor;
+    public CapsuleCollider pointOfView;
 
     Transform m_Transform;
-    
-
-    public static bool detected;
-
-    
+    AudioSource alert;
+   
     void Start()
     {
         m_Transform = GetComponent<Transform>();
+        alert = GetComponent<AudioSource>();
+    }
 
-         detected = false;
+    void Update()
+    {
+        if (Ghost0Movement.pursue) pointOfView.enabled = false;
+        else pointOfView.enabled = true;
     }
     
     
     void OnTriggerEnter (Collider other)
     {
-        //var gargoyle = GameObject.FindWithTag("Gargoyle");
             
         if (other.transform == player)
         {
-            detected = true;
-            //CallGhost();
+            CallGhost();
+            alert.Play();
         }
     }
-
-
-/*
-    void OnTriggerExit (Collider other)
-    {
-        if (other.transform == player)
-        {
-            detected = false;
-        }
-    }
-
-*/
-    void Update(){
-
-       
-    }
-    /*
-    void Update ()
-    {
-        if (m_IsPlayerInRange)
-        {
-            Vector3 direction = player.position - transform.position + Vector3.up;
-            Ray ray = new Ray(transform.position, direction);
-            RaycastHit raycastHit;
-            
-            if (Physics.Raycast (ray, out raycastHit))
-            {
-                if (raycastHit.collider.transform == player)
-                {
-                    Debug.Log(raycastHit.transform);
-                    // gameEnding.CaughtPlayer ();
-                    
-                }
-            }
-        }
-    }
-    */
 
     void CallGhost()
     {
@@ -89,31 +55,31 @@ public class GargoyleObserver : MonoBehaviour
 
         if (calledGhost == 0)
         {
-            MaquinaEstados.called = true;
-            GhostMovement.calledPosition = m_Transform.position;
+            //MaquinaEstados.called = true;
+            Ghost0Movement.called = true;
+            Ghost0Movement.calledWaypoint = neighbor;
+            
         }
 
-
-        /*
 
         else if (calledGhost == 1)
         {
             Ghost1Movement.called = true;
-            Ghost1Movement.calledPosition = m_Transform.position;
+            Ghost1Movement.calledWaypoint = neighbor;;
         }
 
         else if (calledGhost == 2)
         {
             Ghost2Movement.called = true;
-            Ghost2Movement.calledPosition = m_Transform.position;
+            Ghost2Movement.calledWaypoint = neighbor;
         }
 
         else if (calledGhost == 3)
         {
             Ghost3Movement.called = true;
-            Ghost3Movement.calledPosition = m_Transform.position;
+            Ghost3Movement.calledWaypoint = neighbor;
         }
-        */
+        
 
         else  //Si es -1
         {

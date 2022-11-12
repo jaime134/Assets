@@ -5,25 +5,17 @@ using UnityEngine;
 public class Observer : MonoBehaviour
 {
     public Transform player;
-    public GameEnding gameEnding;
+    public bool m_IsPlayerInRange;
 
-    bool m_IsPlayerInRange;
-
-    void OnTriggerEnter (Collider other)
+    void OnTriggerEnter(Collider other)
     {
-        //var gargoyle = GameObject.FindWithTag("Gargoyle");
-            
         if (other.transform == player)
         {
-            //if (other == gargoyle.GetComponent<Collider>())
-            //{
-            //    Debug.Log("Is gargoyle");
-            //}
             m_IsPlayerInRange = true;
         }
     }
 
-    void OnTriggerExit (Collider other)
+    void OnTriggerExit(Collider other)
     {
         if (other.transform == player)
         {
@@ -31,7 +23,7 @@ public class Observer : MonoBehaviour
         }
     }
 
-    void Update ()
+    void Update()
     {
         if (m_IsPlayerInRange)
         {
@@ -39,12 +31,14 @@ public class Observer : MonoBehaviour
             Ray ray = new Ray(transform.position, direction);
             RaycastHit raycastHit;
             
-            if (Physics.Raycast (ray, out raycastHit))
+            if (Physics.Raycast(ray, out raycastHit))
             {
                 if (raycastHit.collider.transform == player)
                 {
-                    Debug.Log(raycastHit.transform);
-                    gameEnding.CaughtPlayer();
+                    Ghost0Movement.pursue = true;
+                    Ghost1Movement.pursue = true;
+                    Ghost2Movement.pursue = true;
+                    Ghost3Movement.pursue = true;
                 }
             }
         }

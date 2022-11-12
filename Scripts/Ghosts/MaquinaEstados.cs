@@ -8,7 +8,7 @@ public class MaquinaEstados : MonoBehaviour
     public static bool pursue;
     public static  bool patrol;
     public static bool called;
-    // Start is called before the first frame update
+
     void Start()
     {
         patrol = true;
@@ -16,13 +16,12 @@ public class MaquinaEstados : MonoBehaviour
         called = false;
     }
 
-    // Update is called once per frame
+
     void Update()
     {
-        if(GargoyleObserver.detected){
+        /*if(GargoyleObserver.detected){
 
             patrol = false;
-
             called = true;
 
         }
@@ -37,7 +36,10 @@ public class MaquinaEstados : MonoBehaviour
         if(called== false && pursue ==false){
 
             patrol = true;
-        }
+        }*/
 
     }
+
+
+
 }
